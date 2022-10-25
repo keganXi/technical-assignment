@@ -1,4 +1,4 @@
 # Files to ignore.
 venv/
-pycache/
+__pycache__/
 .env

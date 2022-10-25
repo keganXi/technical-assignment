@@ -1,6 +1,6 @@
 # Test entire application.
 run-test:
-	docker-compose run web python3 manage.py test
+	python3 manage.py test
 
 
 # Start django server.
@@ -23,27 +23,11 @@ shell:
 	docker-compose run web python3 manage.py shell
 
 
-# apply all migrations and migrate
-migrate:
-	docker-compose run web python3 manage.py makemigrations
-	docker-compose run web python3 manage.py migrate
-
-
-# make migrations
-docker-make-migrations:
-	docker-compose run web python3 manage.py makemigrations
-
-
-# apply changes to database (migrate).
-docker-migrate:
-	docker-compose run web python3 manage.py migrate
-
-
 # create superuser.
 create-super-user:
-	docker-compose run web python3 manage.py createsuperuser
+	python3 manage.py createsuperuser
 
 
-# start server from docker.
-docker-run:
-	docker-compose --env-file .env up
+# runserver
+run:
+	python3 manage.py runserver

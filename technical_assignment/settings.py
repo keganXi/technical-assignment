@@ -42,7 +42,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 CREATED_APPS = [
-    "authentication"
+    "users"
 ]
 
 INSTALLED_APPS = [
@@ -88,13 +88,23 @@ WSGI_APPLICATION = 'technical_assignment.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
+
+# TEST 
+TEST_DB = {
+    'NAME': env("TEST_DATABASE_NAME"),
 }
 
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': env("DATABASE_NAME"),
+        'USER': env("DATABASE_USER"),
+        'PASSWORD': env("DATABASE_PASSWORD"),
+        'HOST': env("DATABASE_HOST"),
+        'PORT': env("DATABASE_PORT"),
+        'TEST': TEST_DB
+    }
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators

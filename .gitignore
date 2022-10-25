@@ -1,4 +1,8 @@
 # Files to ignore.
-venv/
-__pycache__/
+v.vscode
+venv
+__pycache__
 .env
+.data
+/code/
+.pytest_cache

@@ -14,9 +14,9 @@ jobs:
       postgres:
         image: postgres:latest
         env:
-          POSTGRES_USER: ${{ secrets.DATABASE_USER }}
-          POSTGRES_PASSWORD: ${{ secrets.DATABASE_PASSWORD }}
-          POSTGRES_DB: ${{ secrets.DATABASE_NAME }}
+          DATABASE_USER: ${{ secrets.DATABASE_USER }}
+          DATABASE_PASSWORD: ${{ secrets.DATABASE_PASSWORD }}
+          DATABASE_NAME: ${{ secrets.DATABASE_NAME }}
         ports:
           - 5432:5432
         # needed because the postgres container does not provide a healthcheck
@@ -33,9 +33,9 @@ jobs:
         python -m pip install --upgrade pip
         pip install -r requirements.txt
     - name: Run migrations
-      env:
-        SECRET_KEY: ${{ secrets.SECRET_KEY }}
       run: python manage.py migrate
     - name: Run Tests
       run: |
         python manage.py test users.tests
+      env:
+        SECRET_KEY: ${{ secrets.SECRET_KEY }}

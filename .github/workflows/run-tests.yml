@@ -36,5 +36,4 @@ jobs:
         TEST_DATABASE_NAME: ${{ secrets.TEST_DATABASE_PORT }}
 
       run: |
-        pytest
-        python manage.py test
+        python manage.py test users.tests

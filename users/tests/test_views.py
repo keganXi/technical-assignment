@@ -7,4 +7,4 @@ from django.test import TestCase
 class TestCIWorflow(TestCase):
 
     def test_ci(self):
-        return self.assertEquals(1 + 3, 4)
+        return self.assertEquals(1 + 4, 5)

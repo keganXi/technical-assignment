@@ -92,7 +92,7 @@ WSGI_APPLICATION = 'technical_assignment.wsgi.application'
 
 # TEST 
 TEST_DB = {
-    'NAME': env("TEST_DATABASE_NAME"),
+    'NAME': env("TEST_DATABASE_NAME", default="test_technical_assignment"),
 }
 
 if os.environ.get('GITHUB_WORKFLOW'):
@@ -103,8 +103,7 @@ if os.environ.get('GITHUB_WORKFLOW'):
             'USER': "postgres",
             'PASSWORD': "postgres",
             'HOST': env("DATABASE_HOST"),
-            'PORT': env("DATABASE_PORT"),
-            'TEST': TEST_DB
+            'PORT': env("DATABASE_PORT")
         }
     }
 else:

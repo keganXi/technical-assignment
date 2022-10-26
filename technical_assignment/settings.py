@@ -95,7 +95,7 @@ TEST_DB = {
     'NAME': env("TEST_DATABASE_NAME"),
 }
 
-if os.environ.get('GITHUB_WORKFLOW'):
+if os.environ.get('CI_WORKFLOW'):
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.postgresql',

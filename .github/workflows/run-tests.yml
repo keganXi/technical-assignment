@@ -34,6 +34,7 @@ jobs:
         DATABASE_HOST: ${{ secrets.DATABASE_HOST }}
         DATABASE_PORT: ${{ secrets.DATABASE_PORT }}
         TEST_DATABASE_NAME: ${{ secrets.TEST_DATABASE_PORT }}
-        
+
       run: |
+        pytest
         python manage.py test

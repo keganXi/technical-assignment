@@ -32,7 +32,14 @@ env.read_env(str(BASE_DIR / ".env"))
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = env("SECRET_KEY")
+
+# ENV_SECRET_KEY = "" # initializer.
+# if os.environ.get('GITHUB_WORKFLOW'):
+#     ENV_SECRET_KEY = os.environ.get("SECRET_KEY")
+# else:
+#     ENV_SECRET_KEY = env("SECRET_KEY")
+
+SECRET_KEY = os.environ.get("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -92,19 +99,18 @@ WSGI_APPLICATION = 'technical_assignment.wsgi.application'
 
 # TEST 
 TEST_DB = {
-    'NAME': env("TEST_DATABASE_NAME"),
+    'NAME': env("TEST_DATABASE_NAME", default="test_technical_assignment"),
 }
 
 if os.environ.get('GITHUB_WORKFLOW'):
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.postgresql',
-            'NAME': env("DATABASE_NAME"),
+            'NAME': "technical_assignment",
             'USER': "postgres",
             'PASSWORD': "postgres",
-            'HOST': env("DATABASE_HOST"),
-            'PORT': env("DATABASE_PORT"),
-            'TEST': TEST_DB
+            'HOST': "localhost",
+            'PORT': 5432
         }
     }
 else:

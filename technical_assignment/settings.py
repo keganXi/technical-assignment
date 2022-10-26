@@ -32,13 +32,14 @@ env.read_env(str(BASE_DIR / ".env"))
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-ENV_SECRET_KEY = ""
-if os.environ.get('GITHUB_WORKFLOW'):
-    ENV_SECRET_KEY = os.environ.get("SECRET_KEY")
-else:
-    ENV_SECRET_KEY = env("SECRET_KEY")
 
-SECRET_KEY = ENV_SECRET_KEY
+# ENV_SECRET_KEY = "" # initializer.
+# if os.environ.get('GITHUB_WORKFLOW'):
+#     ENV_SECRET_KEY = os.environ.get("SECRET_KEY")
+# else:
+#     ENV_SECRET_KEY = env("SECRET_KEY")
+
+SECRET_KEY = os.environ.get("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True

@@ -1,3 +1,5 @@
+# users/tests/test_models.py
+
 from django.test import TestCase
 
 # models.
@@ -37,4 +39,4 @@ class TestUsersModels(TestCase):
              NOTE: test which user was created.
         """
         username = self.users[0]["username"]
-        self.assertEquals(User.objects.filter(username=username).exists(), True)
+        self.assertTrue(User.objects.filter(username=username).exists())

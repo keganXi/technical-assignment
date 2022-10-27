@@ -14,3 +14,11 @@ class RegistrationForm(forms.ModelForm):
     class Meta:
         model = User
         fields = ["username", "password", "home_address", "phone_number"]
+    
+    def save(self):
+        """
+            NOTE: create a new user
+        """
+        user = User.objects.create_user(**self.data)
+        return user
+        

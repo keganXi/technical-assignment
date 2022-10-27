@@ -21,13 +21,10 @@ class TestRegstrationForm(TestCase):
         }
     ]
 
-    def test_form(self):
+    def test_form_valid(self):
         """
-            NOTE: create user with registration form.
+            NOTE: test if form is valid.
         """
-        form = RegistrationForm(self.users[0])
-        form.save()
-        self.assertTrue(User.objects.filter(username=self.users[0]["username"]).exists())
-        
-        
+        form = RegistrationForm(data=self.users[0])
+        self.assertTrue(form.is_valid())
 

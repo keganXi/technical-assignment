@@ -17,8 +17,8 @@ class RegistrationForm(forms.ModelForm):
     
     def save(self):
         """
-            NOTE: create a new user
+            NOTE: create a new user.
         """
-        user = User.objects.create_user(**self.data)
+        user = User.objects.create_user(**self.cleaned_data)
         return user
         

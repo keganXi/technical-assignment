@@ -18,9 +18,11 @@ class TestUsersModels(TestCase):
         }
     ]
 
+
     def setUp(self):
         # create test user.
         self.user = User.objects.create_user(**self.users[0])
+
 
     def test_total_users(self):
         """
@@ -28,6 +30,7 @@ class TestUsersModels(TestCase):
         """
         total_users = 1
         self.assertEquals(total_users, User.objects.all().count())
+
 
     def test_which_user(self):
         """

@@ -8,10 +8,12 @@ https://docs.djangoproject.com/en/4.0/topics/settings/
 
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.0/ref/settings/
+
+base.py file is set as base for all other settings files.
+
 """
 
 from pathlib import Path
-import os
 
 # 3rd party dependencies.
 import environ
@@ -21,7 +23,7 @@ import environ
 env = environ.Env()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve(strict=True).parent.parent
+BASE_DIR = Path(__file__).resolve(strict=True).parent.parent.parent
 
 # reading .env file
 # Take environment variables from .env file
@@ -32,19 +34,14 @@ env.read_env(str(BASE_DIR / ".env"))
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
+SECRET_KEY = env("SECRET_KEY")
 
-# ENV_SECRET_KEY = "" # initializer.
-# if os.environ.get('GITHUB_WORKFLOW'):
-#     ENV_SECRET_KEY = os.environ.get("SECRET_KEY")
-# else:
-#     ENV_SECRET_KEY = env("SECRET_KEY")
-
-SECRET_KEY = os.environ.get("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+# https://docs.djangoproject.com/en/dev/ref/settings/#allowed-hosts
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
@@ -92,39 +89,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'technical_assignment.wsgi.application'
 
-
-# Database
-# https://docs.djangoproject.com/en/4.0/ref/settings/#databases
-
-
-# TEST 
-TEST_DB = {
-    'NAME': env("TEST_DATABASE_NAME", default="test_technical_assignment"),
-}
-
-if os.environ.get('GITHUB_WORKFLOW'):
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.postgresql',
-            'NAME': "technical_assignment",
-            'USER': "postgres",
-            'PASSWORD': "postgres",
-            'HOST': "localhost",
-            'PORT': 5432
-        }
-    }
-else:
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.postgresql',
-            'NAME': env("DATABASE_NAME"),
-            'USER': env("DATABASE_USER"),
-            'PASSWORD': env("DATABASE_PASSWORD"),
-            'HOST': env("DATABASE_HOST"),
-            'PORT': env("DATABASE_PORT"),
-            'TEST': TEST_DB
-        }
-    }
 
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators

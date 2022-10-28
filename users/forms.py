@@ -1,4 +1,5 @@
 # users/forms.py
+
 from django import forms
 
 from django.contrib.auth.forms import UserCreationForm
@@ -9,7 +10,7 @@ from .models import User
 # create forms below.
 
 
-class RegistrationForm(forms.ModelForm):
+class RegisterForm(forms.ModelForm):
     
     class Meta:
         model = User

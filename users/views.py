@@ -6,13 +6,13 @@ from django.views import View
 from django.urls import reverse_lazy
 
 # forms.
-from .forms import RegistrationForm
+from .forms import RegisterForm
 
 # Create your views here.
 
 
 class RegisterView(View):
-    form_class = RegistrationForm 
+    form_class = RegisterForm 
     success_url = reverse_lazy("login")
     template_name = "users/register.html"
 

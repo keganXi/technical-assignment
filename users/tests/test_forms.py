@@ -3,7 +3,7 @@
 from django.test import TestCase
 
 # forms.
-from users.forms import RegistrationForm
+from users.forms import RegisterForm
 
 # models.
 from users.models import User
@@ -11,7 +11,7 @@ from users.models import User
 # create tests below.
 
 
-class TestRegstrationForm(TestCase):
+class TestRegsterForm(TestCase):
     users = [
         {
             "username": "john",
@@ -25,6 +25,6 @@ class TestRegstrationForm(TestCase):
         """
             NOTE: test if form is valid.
         """
-        form = RegistrationForm(data=self.users[0])
+        form = RegisterForm(data=self.users[0])
         self.assertTrue(form.is_valid())
 

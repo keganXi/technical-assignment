@@ -14,6 +14,12 @@ from users.models import User
 
 
 class TestAuthViews(TestRegsterForm):
+    registration_credentials = {
+        "username": "jack",
+        "home_addres": "21 jack st, western cape",
+        "phone_number": "0845503982",
+        "password": "12345678"
+    }
     login_credentials = {
         "username": "jack",
         "password": "12345678"
@@ -42,6 +48,15 @@ class TestAuthViews(TestRegsterForm):
         self.assertContains(response, "Don't have an account?") # redirect was successful.
         username = self.users[0]["username"] # get username.
         self.assertTrue(User.objects.filter(username=username).exists()) # check if user was created.
+
+    
+    def test_register_user_failed(self):
+        """
+            NOTE: registration should fail because of incorrect credentials.
+        """
+        # send post request with user registration data.
+        response = self.client.post(self.url_register, data=self.registration_credentials)
+        self.assertContains(response, "A user with that username already exists.") # html contains error message.
 
 
     def test_login_user_successful(self):

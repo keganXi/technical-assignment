@@ -44,15 +44,15 @@ class TestRegisterView(TestRegsterForm):
         self.assertTrue(User.objects.filter(username=username).exists()) # check if user was created.
 
 
-    # def test_login_user_successful(self):
-    #     """
-    #         NOTE: user should login successfully and should redirect to home.
-    #     """
-    #     # send post request with user login data.
-    #     response = self.client.post(
-    #         self.url_login, data=self.login_credentials)
-    #     self.assertEquals(response.status_code, 302) # redirect to home.
-    #     self.assertContains(response, f"Welcome {self.login_credentials['username']}") # redirect was successful.
+    def test_login_user_successful(self):
+        """
+            NOTE: user should login successfully and should redirect to home.
+        """
+        # send post request with user login data.
+        response = self.client.post(
+            self.url_login, data=self.login_credentials, follow=True)
+        self.assertEquals(response.status_code, 200) # redirect to home.
+        self.assertContains(response, f"Welcome {self.login_credentials['username']}") # redirect was successful.
 
     
     def test_login_user_failed(self):

@@ -34,7 +34,7 @@ register_view = RegisterView.as_view()
 
 class LoginView(View):
     form_class = LoginForm 
-    success_url = ""
+    success_url = "login"
     template_name = "users/login.html"
 
     def get(self, request, *args, **kwargs):
@@ -52,6 +52,7 @@ class LoginView(View):
             else:
                 # Invalid user credentials.
                 messages.error(request, "Incorrect username or password!")
+                return render(request, self.template_name, {'form': self.form_class})
 
 login_view = LoginView.as_view()
 

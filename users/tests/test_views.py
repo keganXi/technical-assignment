@@ -14,10 +14,23 @@ from users.models import User
 
 
 class TestRegisterView(TestRegsterForm):
+    login_credentials = {
+        "username": "jack",
+        "password": "12345678"
+    }
+    fail_login_credentials = {
+        "username": "john",
+        "password": "12345678"
+    }
+
 
     def setUp(self):
         self.url_register = reverse("register")
         self.url_login = reverse("login")
+
+        # create user.
+        User.objects.create_user(**self.login_credentials)
+
 
     def test_register_user_successful(self):
         # send post request with user registration data.
@@ -28,8 +41,23 @@ class TestRegisterView(TestRegsterForm):
 
 
     def test_login_user_successful(self):
+        """
+            NOTE: user should login successfully and should redirect to home.
+        """
         # send post request with user login data.
-        response = self.client.post(self.url_login, data=self.users[0])
-        self.assertEquals(response.status, 302) # post request was successful and redirect to home.
+        response = self.client.post(
+            self.url_login, data=self.login_credentials)
+        self.assertEquals(response.status_code, 302) # redirect to home.
+        self.assertContains(response, f"Welcome {self.login_credentials['username']}") # redirect was successful.
+
+    
+    def test_login_user_failed(self):
+        """
+            NOTE: authentication should fail because of incorrect login credentials.
+        """
+        # send post request with user login data.
+        response = self.client.post(
+            self.url_login, data=self.fail_login_credentials)
+        self.assertContains(response, "Incorrect username or password!") # html contains error message.
         
         

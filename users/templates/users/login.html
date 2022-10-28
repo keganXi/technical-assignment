@@ -34,6 +34,16 @@
                     </div>
 
                     <div>
+                        {% if messages %}
+                            {% for message in messages %}
+                                {% if message.tags == "error" %}
+                                    <span class="text-sm text-red-500">{{ message }}</span>
+                                {% endif %}
+                            {% endfor %}
+                        {% endif %}
+                    </div>
+
+                    <div>
                         <button class="w-full text-md px-6 py-3 rounded-lg hover:bg-sky-400 bg-sky-500 duration-300 text-white font-semibold">Login</button>
                     </div>
                     

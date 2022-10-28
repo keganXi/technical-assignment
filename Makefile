@@ -15,7 +15,7 @@ install-reqs:
 
 # django shell.
 shell:
-	docker-compose run web python3 manage.py shell
+	python3 manage.py shell
 
 
 # create superuser.

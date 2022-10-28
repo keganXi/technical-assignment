@@ -22,4 +22,11 @@ class RegisterForm(forms.ModelForm):
         """
         user = User.objects.create_user(**self.cleaned_data)
         return user
+
+
+class LoginForm(forms.ModelForm):
+
+    class Meta:
+        model = User 
+        fields = ["username", "password"]
         

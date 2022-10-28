@@ -47,7 +47,8 @@ ALLOWED_HOSTS = ["*"]
 # Application definition
 
 CREATED_APPS = [
-    "users"
+    "users",
+    "home"
 ]
 
 THIRD_PARTY_APPS = [

@@ -37,7 +37,7 @@
                         {% if messages %}
                             {% for message in messages %}
                                 {% if message.tags == "error" %}
-                                    <span class="text-sm text-red-500">{{ message }}</span>
+                                    <span class="text-sm">{{ message }}</span>
                                 {% endif %}
                             {% endfor %}
                         {% endif %}

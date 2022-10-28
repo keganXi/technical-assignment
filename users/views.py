@@ -35,7 +35,7 @@ register_view = RegisterView.as_view()
 
 class LoginView(View):
     form_class = LoginForm 
-    success_url = reverse_lazy("login")
+    success_url = reverse_lazy("home")
     template_name = "users/login.html"
 
     def get(self, request, *args, **kwargs):

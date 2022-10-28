@@ -34,7 +34,7 @@ register_view = RegisterView.as_view()
 
 class LoginView(View):
     form_class = LoginForm 
-    success_url = "login"
+    success_url = reverse_lazy("login")
     template_name = "users/login.html"
 
     def get(self, request, *args, **kwargs):
@@ -47,7 +47,7 @@ class LoginView(View):
             # authenticate user credentials.
             user = authenticate(request, **form.cleaned_data)
             if user is not None:
-                login(user)
+                login(request, user)
                 return redirect(self.success_url)
             else:
                 # Invalid user credentials.

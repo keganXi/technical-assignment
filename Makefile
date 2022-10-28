@@ -26,3 +26,8 @@ create-super-user:
 # runserver
 run:
 	python3 manage.py runserver
+
+
+# run tailwind dev server.
+run-tailwind:
+	python3 manage.py tailwind start

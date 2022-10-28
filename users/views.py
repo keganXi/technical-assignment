@@ -28,3 +28,21 @@ class RegisterView(View):
 
 register_view = RegisterView.as_view()
 
+
+
+class LoginView(View):
+    form_class = RegisterForm 
+    template_name = "users/login.html"
+
+    def get(self, request, *args, **kwargs):
+        # render register page.
+        return render(request, self.template_name, {'form': self.form_class})
+
+    def post(self, request, *args, **kwargs):
+        form = self.form_class(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect(self.success_url)
+
+login_view = LoginView.as_view()
+

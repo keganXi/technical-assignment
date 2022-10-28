@@ -1,0 +1,25 @@
+{% load tailwind_tags %}
+<!DOCTYPE html>
+
+<html lang="en">
+
+    <head>
+
+        {% tailwind_css %}
+
+        <meta charset="UTF-8">
+        <meta name="description" content="Technical Assigment">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>
+            Technical Assignment | {% block title %}{% endblock title %}
+        </title>
+
+        {% block extend_head %}{% endblock extend_head %}
+    </head>
+
+    <body class="bg-neutral-200">
+
+        
+    
+    </body>
+</html>

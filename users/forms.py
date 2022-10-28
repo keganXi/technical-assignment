@@ -9,6 +9,7 @@ from .models import User
 
 
 class RegisterForm(forms.ModelForm):
+    username = forms.CharField(error_messages={'required': 'This username is already taken!'})
     
     class Meta:
         model = User

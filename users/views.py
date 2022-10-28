@@ -27,6 +27,7 @@ class RegisterView(View):
         if form.is_valid():
             form.save()
             return redirect(self.success_url)
+        return render(request, self.template_name, {'form': form})
 
 register_view = RegisterView.as_view()
 

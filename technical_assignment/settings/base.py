@@ -50,6 +50,12 @@ CREATED_APPS = [
     "users"
 ]
 
+THIRD_PARTY_APPS = [
+    "tailwind",
+    "theme",
+    "django_browser_reload"
+]
+
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -57,7 +63,15 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-] + CREATED_APPS
+] + CREATED_APPS + THIRD_PARTY_APPS
+
+
+# https://django-tailwind.readthedocs.io/en/latest/installation.html
+TAILWIND_APP_NAME = "theme"
+
+INTERNAL_IPS = [
+    "127.0.0.1",
+]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -67,6 +81,9 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
+    # added middleware.
+    "django_browser_reload.middleware.BrowserReloadMiddleware",
 ]
 
 ROOT_URLCONF = 'technical_assignment.urls'

@@ -3,11 +3,6 @@ run-test:
 	python3 manage.py test
 
 
-# Start django server.
-run:
-	python3 manage.py runserver 0.0.0.0:8000
-
-
 # Copy all dependencies into requirements.txt file.
 copy-deps:
 	pip freeze > requirements.txt
@@ -20,7 +15,7 @@ install-reqs:
 
 # django shell.
 shell:
-	docker-compose run web python3 manage.py shell
+	python3 manage.py shell
 
 
 # create superuser.

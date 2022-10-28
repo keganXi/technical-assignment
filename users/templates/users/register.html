@@ -1,0 +1,71 @@
+{% load tailwind_tags %}
+
+<!DOCTYPE html>
+
+<html lang="en">
+
+    <head>
+        <meta charset="utf-8">
+        <meta name="description" content="Technical Assignment">
+
+        <title>Technical Assignment | Register</title>
+
+        {% tailwind_css %}
+        
+    </head>
+
+    <body class="bg-neutral-100">
+
+        <div class="justify-center flex">
+            <div class="p-6 shadow-lg sm:rounded-lg bg-white mt-16 w-full sm:w-[390px]">
+                <h3 class="text-center text-xl">Register</h3>
+
+                <form method="POST" class="space-y-4 text-sm">
+                    {% csrf_token %}
+
+                    <div class="space-y-2">
+                        <label>Username*</label><br>
+                        <input type="text" name="username" placeholder="Create username" class="text-sm p-3 w-full rounded-lg border border-gray-300" required/>
+                    </div>
+
+                    <div class="space-y-2">
+                        <label>Home address*</label><br>
+                        <input type="text" name="home_address" placeholder="Enter home address" class="text-sm p-3 w-full rounded-lg border border-gray-300" required/>
+                    </div>
+
+                    <div class="space-y-2">
+                        <label>Phone number*</label><br>
+                        <input type="tel" name="phone_number" placeholder="Enter phone number" class="text-sm p-3 w-full rounded-lg border border-gray-300" required />
+                    </div>
+
+                    <div class="space-y-2">
+                        <label>Password*</label><br>
+                        <input type="password" name="password" placeholder="Create password" class="text-sm p-3 w-full rounded-lg border border-gray-300" required/>
+                    </div>
+
+                    {% if form.errors %}
+                        {% for field in form %}
+                            {% for error in field.errors %} 
+                                <div class="space-y-2">
+                                    <span class="text-sm">{{ error|escape }}</span>
+                                </div>
+                            {% endfor %}
+                        {% endfor %}
+                    {% endif %}
+
+                    <div>
+                        <button class="w-full text-md px-6 py-3 rounded-lg hover:bg-sky-400 bg-sky-500 duration-300 text-white font-semibold">Register</button>
+                    </div>
+                    
+                </form>
+
+                <div class="text-sm mt-6">
+                    <span>Already have an account? <a href="{% url 'login' %}" class="text-sky-400 hover:underline">Login</a></span>
+                </div>
+
+            </div>
+        </div>
+
+    </body>
+
+</html>

@@ -13,7 +13,7 @@ from users.models import User
 # Write tests below.
 
 
-class TestRegisterView(TestRegsterForm):
+class TestAuthViews(TestRegsterForm):
     login_credentials = {
         "username": "jack",
         "password": "12345678"

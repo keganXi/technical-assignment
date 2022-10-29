@@ -12,10 +12,21 @@
         <title>
             Technical Assignment | {% block title %}{% endblock title %}
         </title>
-
+        
+        <!--- Tailwind css file -->
         {% tailwind_css %}
 
-        {% block extend_head %}{% endblock extend_head %}
+        <!-- Leaflet css file -->
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.2/dist/leaflet.css"
+        integrity="sha256-sA+zWATbFveLLNqWO2gtiw3HL/lh1giY/Inf1BJ0z14="
+        crossorigin=""/>
+
+        <!--- Javascript Leaflet file -->
+        <script src="https://unpkg.com/leaflet@1.9.2/dist/leaflet.js"
+        integrity="sha256-o9N1jGDZrf5tS+Ft4gbIK7mYMipq9lqpVJ91xHSyKhg="
+        crossorigin=""></script>
+
+        {% block head %}{% endblock head %}
     </head>
 
     <body class="bg-neutral-100">
@@ -39,11 +50,15 @@
             </nav>
         </header>
 
-        <main class="ml-[300px] p-4">
+        <main class="ml-[300px] p-6">
 
             {% block main %}
             {% endblock main %}
         </main>
+
+        
+        {% block js_scripts %}
+        {% endblock js_scripts %}
 
         
     

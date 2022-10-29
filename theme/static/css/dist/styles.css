@@ -846,6 +846,22 @@ select {
   height: 100vh;
 }
 
+.h-full {
+  height: 100%;
+}
+
+.h-\[300px\] {
+  height: 300px;
+}
+
+.h-1\/2 {
+  height: 50%;
+}
+
+.h-\[500px\] {
+  height: 500px;
+}
+
 .w-\[300px\] {
   width: 300px;
 }
@@ -951,6 +967,15 @@ select {
 .py-3 {
   padding-top: 0.75rem;
   padding-bottom: 0.75rem;
+}
+
+.py-10 {
+  padding-top: 2.5rem;
+  padding-bottom: 2.5rem;
+}
+
+.pb-10 {
+  padding-bottom: 2.5rem;
 }
 
 .text-center {

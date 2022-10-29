@@ -1,9 +1,28 @@
 {% extends "home/base.html" %}
+{% load static %}
 
 
-{% block title %} Dashboard{% endblock title %}
+{% block title %}Dashboard{% endblock title %}
+
+{% block head %}
+    <style>
+    </style>
+{% endblock head %}
 
 
 {% block main %}
-    <h3>Welcome {{ request.user }}</h3>
-{% endblock main%}
+
+    <div class="pb-10">
+        <h3 class="">Welcome {{ request.user }}</h3>
+    </div>
+
+    <section>
+        <div id="map" class="h-[500px]">
+        </div>
+    </section>
+{% endblock main %}
+
+
+{% block js_scripts %}
+    <script src="{% static 'home/js/custom_map.js' %}"></script>
+{% endblock js_scripts %}

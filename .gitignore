@@ -1,10 +1,11 @@
 # Files to ignore.
 v.vscode
+.vscode/
 venv
 __pycache__/
 *.py[cod]
 .env
 .data
 /code/
-/theme/
 .pytest_cache
+node_modules/

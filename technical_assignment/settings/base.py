@@ -156,3 +156,7 @@ AUTH_USER_MODEL = "users.User"
 SITE_ID = 1
 
 LOGIN_URL = 'login'
+
+
+# Google API key.
+GOOGLE_API_KEY = env("GOOGLE_API_KEY")

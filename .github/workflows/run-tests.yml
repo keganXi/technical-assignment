@@ -51,4 +51,5 @@ jobs:
         DATABASE_HOST: ${{ secrets.DATABASE_HOST }}
       run: |
         python manage.py test users.tests
+        python manage.py test home.tests
       

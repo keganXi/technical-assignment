@@ -32,21 +32,7 @@ class TestUsersModels(TestCase):
             NOTE: test total number of users created.
         """
         total_users = 1
-        self.assertEquals(total_users, User.objects.all().count())
-
-    
-    def test_location_not_empty(self):
-        """
-            NOTE: check if user location is not empty.
-        """
-        self.assertGreater(len(self.user.location), 0)
-
-
-    def test_correct_location(self):
-        """
-            NOTE: test if google maps api returned the correct coordinates.
-        """
-        self.assertEquals(self.user.location, self.location) 
+        self.assertEquals(total_users, User.objects.all().count()) 
 
 
     def test_which_user(self):

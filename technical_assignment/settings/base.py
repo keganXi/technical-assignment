@@ -54,7 +54,8 @@ CREATED_APPS = [
 THIRD_PARTY_APPS = [
     "tailwind",
     "theme",
-    "django_browser_reload"
+    "django_browser_reload",
+    "location_field.apps.DefaultConfig",
 ]
 
 INSTALLED_APPS = [

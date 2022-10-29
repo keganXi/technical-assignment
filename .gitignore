@@ -1,5 +1,6 @@
 # Files to ignore.
 v.vscode
+.vscode/
 venv
 __pycache__/
 *.py[cod]

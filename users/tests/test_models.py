@@ -15,10 +15,11 @@ class TestUsersModels(TestCase):
             "username": "john_doe",
             "password": "1234567",
             "email": "johndoe@test.com",
-            "home_address": "21 test st, western cape",
+            "home_address": "5 Lydenberg Street, Portland, Cape Town",
             "phone_number": "0845503982"
         }
     ]
+    location = "-34.0552652,18.6145938"
 
 
     def setUp(self):
@@ -32,6 +33,20 @@ class TestUsersModels(TestCase):
         """
         total_users = 1
         self.assertEquals(total_users, User.objects.all().count())
+
+    
+    def test_location_not_empty(self):
+        """
+            NOTE: check if user location is not empty.
+        """
+        self.assertGreater(len(self.user.location), 0)
+
+
+    def test_correct_location(self):
+        """
+            NOTE: test if google maps api returned the correct coordinates.
+        """
+        self.assertEquals(self.user.location, self.location) 
 
 
     def test_which_user(self):

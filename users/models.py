@@ -35,8 +35,8 @@ class User(AbstractUser):
 
         if api_response_dict['status'] == 'OK':
             self.location = ",".join(
-                [api_response_dict['results'][0]['geometry']['location']['lat'],
-                api_response_dict['results'][0]['geometry']['location']['lng']])
+                [str(api_response_dict['results'][0]['geometry']['location']['lat']),
+                str(api_response_dict['results'][0]['geometry']['location']['lng'])])
             self.save()
         super(User, self).save(*args, **kwargs)
 

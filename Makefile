@@ -31,3 +31,13 @@ run:
 # run tailwind dev server.
 run-tailwind:
 	python3 manage.py tailwind start
+
+
+# run makemigrations.
+run-makemigrations:
+	python3 manage.py makemigrations
+
+
+# apply changes.
+run-migrate:
+	python manage.py migrate

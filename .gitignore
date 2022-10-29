@@ -8,4 +8,4 @@ __pycache__/
 .data
 /code/
 .pytest_cache
-theme/
+node_modules/

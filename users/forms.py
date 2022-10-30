@@ -1,11 +1,12 @@
 # users/forms.py
 
 from django import forms
-from technical_assignment.settings.base import GOOGLE_API_KEY
-import requests
 
 # models.
 from .models import User
+
+# api.
+from api.google_geocode_api import GeocodeClient
 
 # create forms below.
 
@@ -23,16 +24,9 @@ class RegisterForm(forms.ModelForm):
                   from home_address using google maps geocoding api.
         """
         address = self.cleaned_data.get("home_address") # get user's home addres.
-        api_key = GOOGLE_API_KEY # google api key
-        api_response = requests.get(
-            'https://maps.googleapis.com/maps/api/geocode/json?address={0}&key={1}'.format(address, api_key))
-        api_response_dict = api_response.json()
-
-        if api_response_dict['status'] == 'OK':
-            location = ",".join(
-                [str(api_response_dict['results'][0]['geometry']['location']['lat']),
-                str(api_response_dict['results'][0]['geometry']['location']['lng'])])
-            self.cleaned_data.update(location=location)
+        client = GeocodeClient(address)
+        if client.status == "OK":
+            self.cleaned_data.update(location=client.get_location())
         user = User.objects.create_user(**self.cleaned_data) # create user.
         return user
 
@@ -40,3 +34,34 @@ class RegisterForm(forms.ModelForm):
 class LoginForm(forms.Form):
     username = forms.CharField(max_length=150, required=True)
     password = forms.CharField(max_length=150, required=True)
+
+
+
+class UpdateProfileForm(forms.Form):
+    username = forms.CharField(max_length=150)
+    home_address = forms.CharField(max_length=150)
+    phone_number = forms.CharField(max_length=15)
+
+
+    def update(self, instance):
+        """
+            NOTE: update user profile (username, home_address and phone number).
+        """
+        home_address = self.cleaned_data.get("home_address", instance.home_address)
+
+        # if home address did not change don't call geocode api.
+        if home_address != instance.home_address:
+            client = GeocodeClient(home_address)
+            if client.status == "OK":
+                # update location.
+                instance.location = client.get_location() # set new location coordinates.
+                instance.home_address = home_address 
+
+        instance.username = self.cleaned_data.get(
+            "username", instance.username
+        )
+        instance.phone_number = self.cleaned_data.get(
+            "phone_number", instance.phone_number
+        )
+        instance.save()
+

@@ -5,15 +5,13 @@ from django.shortcuts import redirect
 from django.contrib import messages
 from django.views import View
 from django.urls import reverse_lazy
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 
 # forms.
 from .forms import RegisterForm, LoginForm, UpdateProfileForm
 
-# models.
-from .models import User
 
 # Create your views here.
 
@@ -66,6 +64,13 @@ login_view = LoginView.as_view()
 @login_required
 def profile_view(request):
     return render(request, "users/profile.html")
+
+
+
+@login_required
+def logout_view(request):
+    logout(request)
+    return redirect("home")
 
 
 class UpdateProfileView(LoginRequiredMixin ,View):

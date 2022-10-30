@@ -12,7 +12,7 @@ from .models import User
 class CustomUserAdmin(UserAdmin):
     fieldsets = (
         (None, {"fields": ("username", "password")}),
-        (_("Personal info"), {"fields": ("home_address", "phone_number", "email")}),
+        (_("Personal info"), {"fields": ("home_address", "location", "phone_number", "email")}),
         (
             _("Permissions"),
             {

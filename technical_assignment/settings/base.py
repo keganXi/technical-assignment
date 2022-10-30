@@ -14,6 +14,7 @@ base.py file is set as base for all other settings files.
 """
 
 from pathlib import Path
+import os
 
 # 3rd party dependencies.
 import environ
@@ -54,7 +55,7 @@ CREATED_APPS = [
 THIRD_PARTY_APPS = [
     "tailwind",
     "theme",
-    "django_browser_reload"
+    "django_browser_reload",
 ]
 
 INSTALLED_APPS = [
@@ -142,7 +143,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
@@ -156,3 +157,10 @@ AUTH_USER_MODEL = "users.User"
 SITE_ID = 1
 
 LOGIN_URL = 'login'
+
+
+# Google API key.
+if os.environ.get('GITHUB_WORKFLOW'):
+    GOOGLE_API_KEY = os.environ.get("GOOGLE_API_KEY")
+else:   
+    GOOGLE_API_KEY = env("GOOGLE_API_KEY")

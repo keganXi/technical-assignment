@@ -15,7 +15,7 @@ class TestUsersModels(TestCase):
             "username": "john_doe",
             "password": "1234567",
             "email": "johndoe@test.com",
-            "home_address": "21 test st, western cape",
+            "home_address": "5 Lydenberg Street, Portland, Cape Town",
             "phone_number": "0845503982"
         }
     ]
@@ -31,7 +31,7 @@ class TestUsersModels(TestCase):
             NOTE: test total number of users created.
         """
         total_users = 1
-        self.assertEquals(total_users, User.objects.all().count())
+        self.assertEquals(total_users, User.objects.all().count()) 
 
 
     def test_which_user(self):

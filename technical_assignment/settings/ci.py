@@ -37,3 +37,7 @@ DATABASES = {
         'PORT': os.environ.get("DATABASE_PORT")
     }
 }
+
+
+# Google API key.
+GOOGLE_API_KEY = os.environ.get("GOOGLE_API_KEY")

@@ -16,7 +16,7 @@ from users.models import User
 class TestAuthViews(TestRegsterForm):
     registration_credentials = {
         "username": "jack",
-        "home_addres": "21 jack st, western cape",
+        "home_addres": "5 Lydenberg Street, Portland, Cape Town",
         "phone_number": "0845503982",
         "password": "12345678"
     }
@@ -28,6 +28,7 @@ class TestAuthViews(TestRegsterForm):
         "username": "john",
         "password": "12345678"
     }
+    location = "-34.0552652,18.6145938"
 
 
     def setUp(self):
@@ -48,6 +49,18 @@ class TestAuthViews(TestRegsterForm):
         self.assertContains(response, "Don't have an account?") # redirect was successful.
         username = self.users[0]["username"] # get username.
         self.assertTrue(User.objects.filter(username=username).exists()) # check if user was created.
+
+    
+    def test_correct_location_coordinates_after_registration(self):
+        """
+            NOTE: test if google geocode api got correct location
+                  coordinates when registering.
+        """
+        # send post request with user registration data.
+        response = self.client.post(self.url_register, data=self.users[0], follow=True)
+        self.assertEquals(response.status_code, 200) # redirect to login.
+        username = self.users[0]["username"] # get username.
+        self.assertEquals(User.objects.get(username=username).location, self.location) # test location coordinates.
 
     
     def test_register_user_failed(self):

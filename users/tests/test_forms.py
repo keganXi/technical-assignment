@@ -16,7 +16,7 @@ class TestRegsterForm(TestCase):
         {
             "username": "john",
             "password": "1234567",
-            "home_address": "21 test st, western cape",
+            "home_address": "5 Lydenberg Street, Portland, Cape Town",
             "phone_number": "0845503982"
         }
     ]

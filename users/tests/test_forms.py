@@ -39,7 +39,7 @@ class TestUpdateProfileForm(TestCase):
     location = "-22.95764,18.49041"
 
     def setUp(self):
-        self.user = User.objects.create(**users[0])
+        self.user = User.objects.create(**users[0]) # create user.
 
     def test_form_valid(self):
         """

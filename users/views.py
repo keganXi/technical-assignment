@@ -6,9 +6,10 @@ from django.contrib import messages
 from django.views import View
 from django.urls import reverse_lazy
 from django.contrib.auth import authenticate, login
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 # forms.
-from .forms import RegisterForm, LoginForm
+from .forms import RegisterForm, LoginForm, UpdateProfileForm
 
 # Create your views here.
 
@@ -53,7 +54,29 @@ class LoginView(View):
             else:
                 # Invalid user credentials.
                 messages.error(request, "Incorrect username or password!")
-                return render(request, self.template_name, {'form': self.form_class})
+        return render(request, self.template_name, {'form': self.form_class})
 
 login_view = LoginView.as_view()
 
+
+
+def profile_view(request):
+    return render(request, "users/profile.html")
+
+
+class UpdateProfileView(LoginRequiredMixin ,View):
+    form_class = UpdateProfileForm
+    success_url = reverse_lazy("profile")
+    template_name = "users/update-profile.html"
+
+    def get(self, request, *args, **kwargs):
+        return render(request, self.template_name)
+
+    def post(self, request, *args, **kwargs):
+        form = self.form_class(data=request.POST)
+        if form.is_valid():
+            form.update(instance=request.user)
+            return redirect(self.success_url)
+        return render(request, self.template_name)
+
+update_profile_view = UpdateProfileView.as_view()

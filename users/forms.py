@@ -41,7 +41,7 @@ class UpdateProfileForm(forms.ModelForm):
 
     class Meta:
         model = User 
-        fields = ("username", "home_address", "phone_number")
+        fields = ["username", "home_address", "phone_number"]
 
     def update(self, instance):
         """

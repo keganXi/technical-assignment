@@ -1,1 +1,37 @@
 {% extends "home/base.html" %}
+
+
+{% block title %}Profile{% endblock title %}
+
+
+{% block main %}
+    <div class="w-full justify-center flex">
+        <div class="w-[400px] bg-white rounded-lg shadow-lg p-6">
+            <h4 class="font-semibold text-lg">Profile</h4>
+
+            <div class="space-y-3 text-sm py-6">
+                <div>
+                    <span>Username: <span class="text-gray-400">{{ request.user.username }}</span></span>
+                </div>
+
+                <div>
+                    <span>Home address: <span class="text-gray-400">{{ request.user.home_address }}</span></span>
+                </div>
+
+                <div>
+                    <span>Phone number: <span class="text-gray-400">{{ request.user.phone_number }}</span></span>
+                </div>
+
+                <div>
+                    <span>Location: <span class="text-gray-400">{{ request.user.location }}</span></span>
+                </div>
+            </div>
+
+            <div>
+                <a href="{% url 'update-profile' %}">
+                    <button class="text-md px-6 py-3 rounded-lg hover:bg-sky-400 bg-sky-500 duration-300 text-white font-semibold">Update</button>
+                </a>
+            </div>
+        </div>
+    </div>
+{% endblock main %}

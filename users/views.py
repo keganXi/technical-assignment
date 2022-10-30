@@ -11,6 +11,9 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 # forms.
 from .forms import RegisterForm, LoginForm, UpdateProfileForm
 
+# models.
+from .models import User
+
 # Create your views here.
 
 

@@ -14,6 +14,7 @@ base.py file is set as base for all other settings files.
 """
 
 from pathlib import Path
+import os
 
 # 3rd party dependencies.
 import environ
@@ -159,4 +160,7 @@ LOGIN_URL = 'login'
 
 
 # Google API key.
-GOOGLE_API_KEY = env("GOOGLE_API_KEY")
+if os.environ.get('GITHUB_WORKFLOW'):
+    GOOGLE_API_KEY = os.environ.get("GOOGLE_API_KEY")
+else:   
+    GOOGLE_API_KEY = env("GOOGLE_API_KEY")

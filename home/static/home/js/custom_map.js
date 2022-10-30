@@ -40,14 +40,17 @@ const profileString = (username, homeAddress, phoneNumber, coordinates) => {
 
 
 for (var i = 0; i < registeredUsers.length; i++) {
-    let username = registeredUsers[i].username; // get username.
-    let homeAddress = registeredUsers[i].home_address; // get username.
-    let phoneNumber = registeredUsers[i].phone_number; // get phone number.
-    let coordinates = registeredUsers[i].location.split(","); // array with latt and long values (get location/coordinates).
+    // if user location is empty don't display.
+    if(registeredUsers[i].location.length > 0){
+        let username = registeredUsers[i].username; // get username.
+        let homeAddress = registeredUsers[i].home_address; // get username.
+        let phoneNumber = registeredUsers[i].phone_number; // get phone number.
+        let coordinates = registeredUsers[i].location.split(","); // array with latt and long values (get location/coordinates).
 
-    const profile = profileString(username, homeAddress, phoneNumber, coordinates);
-    marker = new L.marker(coordinates)
-      .bindPopup(profile)
-      .addTo(map);
+        const profile = profileString(username, homeAddress, phoneNumber, coordinates);
+        marker = new L.marker(coordinates)
+        .bindPopup(profile)
+        .addTo(map);
+    }
   }
 

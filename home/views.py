@@ -3,7 +3,6 @@
 from django.shortcuts import render
 from django.views import View
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.core import serializers
 from json import dumps
 
 # models.
@@ -17,6 +16,7 @@ class HomeView(LoginRequiredMixin, View):
     template_name = "home/home.html"
 
     def get(self, request, *args, **kwargs):
+        # get all registered user data.
         users = User.objects.all().values("username", "home_address", "phone_number", "location")
         data = dumps(list(users))
         return render(request, self.template_name, {"data": data})

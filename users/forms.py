@@ -41,5 +41,26 @@ class UpdateProfileForm(forms.ModelForm):
 
     class Meta:
         model = User 
-        fields = ["home_address", "phone_number"]
+        fields = ("username", "home_address", "phone_number")
+
+    def update(self, instance):
+        """
+            NOTE: update user profile.
+        """
+        home_address = self.cleaned_data.get("home_address", instance.home_address)
+
+        # if home address did not change don't call geocode api.
+        if home_address != instance.home_address:
+            client = GeocodeClient(home_address)
+            if client.status == "OK":
+                # update location.
+                instance.location = client.get_location() # set new location coordinates.
+
+        instance.username = self.cleaned_data.get(
+            "username", instance.username
+        )
+        instance.phone_number = self.cleaned_data.get(
+            "phone_number", instance.phone_number
+        )
+        return instance
 

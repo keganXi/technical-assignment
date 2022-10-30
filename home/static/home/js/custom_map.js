@@ -30,7 +30,7 @@ const profileString = (username, homeAddress, phoneNumber, coordinates) => {
     * NOTE: returns a string displaying all user information.
     *
     * @params
-    *   username - provide user's username.
+    *   username - user's username.
     *   homeAddress - user's home address.
     *   phoneNumber - user's phone number.
     *   coordinates - user's coordinates (Type: array with latitude and longitude)
@@ -47,7 +47,8 @@ for (var i = 0; i < registeredUsers.length; i++) {
         let phoneNumber = registeredUsers[i].phone_number; // get phone number.
         let coordinates = registeredUsers[i].location.split(","); // array with latt and long values (get location/coordinates).
 
-        const profile = profileString(username, homeAddress, phoneNumber, coordinates);
+        // place user info in html tags (UI purpose).
+        const profile = profileString(username, homeAddress, phoneNumber, coordinates);  
         marker = new L.marker(coordinates)
         .bindPopup(profile)
         .addTo(map);

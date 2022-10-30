@@ -30,7 +30,7 @@ class TestRegsterForm(TestCase):
         self.assertTrue(form.is_valid())
 
 
-class TestUpdateForm(TestCase):
+class TestUpdateProfileForm(TestCase):
     data = {
         "username": "john",
         "home_address": "Namibia",

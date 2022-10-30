@@ -19,7 +19,6 @@ class TestUsersModels(TestCase):
             "phone_number": "0845503982"
         }
     ]
-    location = "-34.0552652,18.6145938"
 
 
     def setUp(self):

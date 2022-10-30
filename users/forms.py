@@ -37,11 +37,11 @@ class LoginForm(forms.Form):
 
 
 
-class UpdateProfileForm(forms.ModelForm):
+class UpdateProfileForm(forms.Form):
+    username = forms.CharField(max_length=150)
+    home_address = forms.CharField(max_length=150)
+    phone_number = forms.CharField(max_length=15)
 
-    class Meta:
-        model = User 
-        fields = ["username", "home_address", "phone_number"]
 
     def update(self, instance):
         """
@@ -62,5 +62,5 @@ class UpdateProfileForm(forms.ModelForm):
         instance.phone_number = self.cleaned_data.get(
             "phone_number", instance.phone_number
         )
-        return instance
+        instance.save()
 

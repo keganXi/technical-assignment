@@ -36,6 +36,7 @@ class TestUpdateProfileForm(TestCase):
         "home_address": "Namibia",
         "phone_number": "0845503982"
     }
+    location = "-22.95764,18.49041"
 
     def setUp(self):
         self.user = User.objects.create(**users[0])
@@ -44,5 +45,13 @@ class TestUpdateProfileForm(TestCase):
         """
             NOTE: test if form is valid.
         """
-        form = UpdateProfileForm(data=self.data, instance=self.user)
-        self.assertTrue(form.is_valid())
+        self.form = UpdateProfileForm(data=self.data)
+        self.assertTrue(self.form.is_valid())
+
+    def test_update_location(self):
+        """
+            NOTE: test updated location based on home address.
+        """
+        self.test_form_valid()
+        self.form.update(instance=self.user)
+        self.assertEquals(self.user.location, self.location)

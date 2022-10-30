@@ -24,5 +24,6 @@
 
 
 {% block js_scripts %}
+    {{ data|json_script:"data" }}
     <script src="{% static 'home/js/custom_map.js' %}"></script>
 {% endblock js_scripts %}

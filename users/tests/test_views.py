@@ -34,9 +34,11 @@ class TestAuthViews(TestCase):
     def setUp(self):
         self.url_register = reverse("register")
         self.url_login = reverse("login")
+        self.url_home = reverse("home")
+        self.url_logout = reverse("logout")
 
         # create user.
-        User.objects.create_user(**self.login_credentials)
+        self.user = User.objects.create_user(**self.login_credentials)
 
 
     def test_register_user_successful(self):
@@ -91,5 +93,23 @@ class TestAuthViews(TestCase):
         response = self.client.post(
             self.url_login, data=self.fail_login_credentials)
         self.assertContains(response, "Incorrect username or password!") # html contains error message.
+
+    
+    def test_logout(self):
+        """
+            NOTE: testing logout functionality.
+        """
+        # login user and navigate to home page.
+        self.client.force_login(self.user, backend=None)
+        response = self.client.get(self.url_home, follow=True)
+        self.assertContains(response, f"Welcome {self.login_credentials['username']}")
+
+        # logout user.
+        response = self.client.get(self.url_logout, follow=True) # logout
+        self.assertEquals(response.status_code, 200) # successful redirect
+        self.assertContains(response, f"Don't have an account?") # landed on login page.
+
+
+
         
         

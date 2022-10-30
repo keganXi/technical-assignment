@@ -45,7 +45,7 @@ class UpdateProfileForm(forms.Form):
 
     def update(self, instance):
         """
-            NOTE: update user profile.
+            NOTE: update user profile (username, home_address and phone number).
         """
         home_address = self.cleaned_data.get("home_address", instance.home_address)
 
@@ -55,6 +55,7 @@ class UpdateProfileForm(forms.Form):
             if client.status == "OK":
                 # update location.
                 instance.location = client.get_location() # set new location coordinates.
+                instance.home_address = home_address 
 
         instance.username = self.cleaned_data.get(
             "username", instance.username

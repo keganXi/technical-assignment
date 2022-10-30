@@ -6,6 +6,7 @@ from django.contrib import messages
 from django.views import View
 from django.urls import reverse_lazy
 from django.contrib.auth import authenticate, login
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 
 # forms.
@@ -62,7 +63,7 @@ class LoginView(View):
 login_view = LoginView.as_view()
 
 
-
+@login_required
 def profile_view(request):
     return render(request, "users/profile.html")
 

@@ -25,6 +25,10 @@ Create a ```.env``` file in the root of the project and copy the contents from `
 >NOTE: for more information on django-tailwind installation follow the link https://django-tailwind.readthedocs.io/en/latest/installation.html
 - Install django-tailwind node modules ```$ python manage.py tailwind install```
 
+There is a common error installing django-tailwind on windows because the npm executable cannot be found so I listed the solution below.<br>
+- Add this to the base.py file in settings folder ```NPM_BIN_PATH = r"C:\Program Files\nodejs\npm.cmd"```.
+- To find NPM path type this in the terminal ```$ which npm```.
+
 ## Run Migrations
 - Run migrations ```$ python manage.py makemigrations```.
 - Run migrate ```$ python manage.py migrate```.

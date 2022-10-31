@@ -2,6 +2,12 @@
 
 // NOTE: Building leaftletJS map for displaying registered users.
 
+
+// get current user location.
+const myLocation = JSON.parse(document.getElementById("myLocation").textContent)
+
+
+// get all registered user data.
 // get user data parsed down from django and convert to object.
 const dataString = JSON.parse(document.getElementById("data").textContent);
 const users = JSON.parse(dataString);
@@ -11,12 +17,9 @@ var registeredUsers = [
     ...users
 ];
 
-var latt = -32.715738;
-var long = 18.6145938;
 
-
-// Map view.
-var map = L.map("map").setView([latt, long], 3);
+// Map view (pan to my location).
+var map = L.map("map").setView(myLocation.split(","), 3);
 
 
 L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {

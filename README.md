@@ -5,7 +5,7 @@ Technical home assignment for kartoza.
 A Quick guide on how to setup the project.
 
 ## Clone Project
-```$ git clone https://github.com/keganXi/technical-assignment```
+```$ git clone https://github.com/keganXi/technical-assignment.git```
 
 ## PostgreSQL Database
 > NOTE: if you don't have PostgreSQL installed here is where you can get it https://www.postgresql.org/download/<br>

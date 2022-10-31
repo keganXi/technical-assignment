@@ -8,7 +8,8 @@ A Quick guide on how to setup the project.
 ```$ git clone https://github.com/keganXi/technical-assignment```
 
 ## PostgreSQL Database
-> NOTE: if you don't have PostgreSQL installed here is where you can get it https://www.postgresql.org/download/
+> NOTE: if you don't have PostgreSQL installed here is where you can get it https://www.postgresql.org/download/<br>
+
 Create a database named technical_assignment.<br>
 ```$ createdb technical_assignment```
 

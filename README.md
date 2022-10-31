@@ -17,6 +17,7 @@ Create a database named technical_assignment.<br>
 Create a ```.env``` file in the root of the project and copy the contents from ```.env.example``` and paste it in ```.env``` and insert all secret keys, api keys, etc.
 
 ## Virtual Environment
+> NOTE: if any errors occure with the database try changing ```DATABASE_HOST="db"``` to ```DATABASE_HOST="localhost"```.
 - In the root of the project create a virtual environment ```$ python -m venv venv```.
 - Activate virtual environment ```$ source venv/bin/activate``` or if you running Windows ```>> cd venv/scripts/``` ```>> activate```.
 - Install dependencies from requirements.txt file ```$ pip install -r requirements.txt```.

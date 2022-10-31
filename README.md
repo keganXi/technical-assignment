@@ -8,6 +8,7 @@ A Quick guide on how to setup the project.
 ```$ git clone https://github.com/keganXi/technical-assignment```
 
 ## PostgreSQL Database
+> NOTE: if you don't have PostgreSQL installed here is where you can get it https://www.postgresql.org/download/
 Create a database named technical_assignment.<br>
 ```$ createdb technical_assignment```
 
@@ -21,7 +22,7 @@ Create a ```.env``` file in the root of the project and copy the contents from `
 
 ## Install tailwind-django
 >NOTE: for more information on django-tailwind installation follow the link https://django-tailwind.readthedocs.io/en/latest/installation.html
-- Install django-tailwind node modules ```python manage.py tailwind install```
+- Install django-tailwind node modules ```$ python manage.py tailwind install```
 
 ## Run Migrations
 - Run migrations ```$ python manage.py makemigrations```.

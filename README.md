@@ -1,5 +1,5 @@
 # Technical-Assignment
-Technical home assignment for kartoza.
+Maps
 
 # Setup Guide
 A Quick guide on how to setup the project.
